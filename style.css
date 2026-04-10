@@ -12,50 +12,48 @@
 html { scroll-behavior: smooth; overflow-y: auto; background: var(--bg); }
 body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; min-height: 100vh; }
 
-/* Loader Fix */
+/* Loader */
 #intro-loader { 
   position: fixed; inset: 0; z-index: 10000; background: var(--bg); 
   display: flex; align-items: center; justify-content: center; 
-  transition: 0.8s var(--ease); 
 }
-.hide-loader { opacity: 0 !important; visibility: hidden; }
+.hide-loader { opacity: 0; visibility: hidden; transition: 0.8s var(--ease); }
 
-/* Hero / Cover Fix */
+/* HERO FIX - Kunci ukuran gambar matan awal */
 .hero-cover {
-  position: relative; width: 100%; min-height: 100vh;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; padding: 60px 24px;
+  width: 100%; min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center; padding: 60px 24px;
 }
 
-/* Kunci Ukuran Avatar Supaya Kada Kebesaran */
 .hero-avatar {
-  width: 120px !important; height: 120px !important;
-  border-radius: 50%; border: 4px solid var(--glass-border);
-  padding: 5px; box-shadow: var(--nm-outer);
-  margin-bottom: 25px; object-fit: cover;
-  opacity: 0; transform: scale(0.8); /* Sembunyi dahu */
-  transition: 1s var(--ease);
+  /* KUNCI UKURAN DI SINI */
+  width: 120px !important; 
+  height: 120px !important;
+  max-width: 120px;
+  max-height: 120px;
+  border-radius: 50%;
+  border: 4px solid var(--glass-border);
+  box-shadow: var(--nm-outer);
+  margin-bottom: 25px;
+  object-fit: cover;
+  display: block;
 }
 
 .hero-name {
   font-size: clamp(3rem, 12vw, 5.5rem); font-weight: 800; letter-spacing: -3px; 
-  line-height: 1; margin-bottom: 15px; opacity: 0; transform: translateY(20px);
+  line-height: 1; margin-bottom: 15px;
   background: linear-gradient(180deg, #fff 40%, #475569 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  transition: 1s var(--ease);
 }
 
-/* Mun sudah aktif hanyar muncul */
-.reveal-active .hero-avatar { opacity: 1; transform: scale(1); }
-.reveal-active .hero-name { opacity: 1; transform: translateY(0); }
-
 .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
 .about-card { 
   background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--glass-border);
   border-radius: 35px; padding: 45px 25px; margin: 20px auto 80px; text-align: center;
 }
 
-/* Grid & Icons */
+/* Grid Project */
 .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding-bottom: 80px; }
 .project-card { 
   background: var(--glass); border: 1px solid var(--glass-border); border-radius: 28px; 
