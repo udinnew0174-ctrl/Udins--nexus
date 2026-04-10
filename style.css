@@ -12,85 +12,76 @@
 html { scroll-behavior: smooth; overflow-y: auto; background: var(--bg); }
 body { font-family: 'Plus Jakarta Sans', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; min-height: 100vh; }
 
-#intro-loader { position: fixed; inset: 0; z-index: 10000; background: var(--bg); display: flex; align-items: center; justify-content: center; transition: 0.8s var(--ease); }
+/* Loader Fix */
+#intro-loader { 
+  position: fixed; inset: 0; z-index: 10000; background: var(--bg); 
+  display: flex; align-items: center; justify-content: center; 
+  transition: 0.8s var(--ease); 
+}
 .hide-loader { opacity: 0 !important; visibility: hidden; }
 
-/* FIX COVER & AVATAR */
+/* Hero / Cover Fix */
 .hero-cover {
-  position: relative;
-  width: 100%;
-  min-height: 95vh;
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  text-align: center;
-  padding: 80px 24px;
+  position: relative; width: 100%; min-height: 100vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 60px 24px;
 }
 
+/* Kunci Ukuran Avatar Supaya Kada Kebesaran */
 .hero-avatar {
-  width: 140px; height: 140px;
-  border-radius: 50%;
-  border: 4px solid var(--glass-border);
-  padding: 6px;
-  box-shadow: var(--nm-outer);
-  margin-bottom: 30px;
-  object-fit: cover;
-}
-
-.brand-tag {
-  font-size: 0.75rem; font-weight: 800; letter-spacing: 4px;
-  color: var(--accent); margin-bottom: 10px; text-transform: uppercase;
+  width: 120px !important; height: 120px !important;
+  border-radius: 50%; border: 4px solid var(--glass-border);
+  padding: 5px; box-shadow: var(--nm-outer);
+  margin-bottom: 25px; object-fit: cover;
+  opacity: 0; transform: scale(0.8); /* Sembunyi dahu */
+  transition: 1s var(--ease);
 }
 
 .hero-name {
-  font-size: clamp(3.5rem, 15vw, 6rem);
-  font-weight: 800; letter-spacing: -3px; line-height: 0.95;
+  font-size: clamp(3rem, 12vw, 5.5rem); font-weight: 800; letter-spacing: -3px; 
+  line-height: 1; margin-bottom: 15px; opacity: 0; transform: translateY(20px);
   background: linear-gradient(180deg, #fff 40%, #475569 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  transition: 1s var(--ease);
 }
 
-/* CONTAINER & GRID */
+/* Mun sudah aktif hanyar muncul */
+.reveal-active .hero-avatar { opacity: 1; transform: scale(1); }
+.reveal-active .hero-name { opacity: 1; transform: translateY(0); }
+
 .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
-
-.about-card {
-  background: var(--glass); backdrop-filter: blur(20px);
-  border: 1px solid var(--glass-border); border-radius: 35px;
-  padding: 50px 30px; margin-bottom: 80px; text-align: center;
+.about-card { 
+  background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--glass-border);
+  border-radius: 35px; padding: 45px 25px; margin: 20px auto 80px; text-align: center;
 }
 
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; padding-bottom: 80px; }
-
-.project-card {
-  background: var(--glass); border: 1px solid var(--glass-border);
-  border-radius: 30px; padding: 30px; text-decoration: none; color: inherit;
-  transition: 0.4s var(--ease);
+/* Grid & Icons */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding-bottom: 80px; }
+.project-card { 
+  background: var(--glass); border: 1px solid var(--glass-border); border-radius: 28px; 
+  padding: 30px; text-decoration: none; color: inherit; transition: 0.4s var(--ease);
 }
 .project-card:hover { transform: translateY(-8px); border-color: var(--accent); }
 
-.icon-box {
-  width: 55px; height: 55px; background: var(--bg); border-radius: 15px;
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 20px; color: var(--accent); font-size: 1.4rem;
-  box-shadow: var(--nm-outer);
+.icon-box { 
+  width: 55px; height: 55px; background: var(--bg); border-radius: 15px; 
+  display: flex; align-items: center; justify-content: center; margin-bottom: 20px; 
+  color: var(--accent); font-size: 1.4rem; box-shadow: var(--nm-outer);
 }
 
-.tag { font-size: 0.65rem; font-weight: 800; color: var(--accent); margin-bottom: 8px; display: block; }
-
-/* FOOTER SOSMED FIX */
-footer { padding: 60px 0 100px; text-align: center; border-top: 1px solid var(--glass-border); }
-.social-links { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
-.social-links a {
-  width: 55px; height: 55px; border-radius: 18px;
-  background: var(--bg); box-shadow: var(--nm-outer);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--text); font-size: 1.5rem; text-decoration: none;
-  border: 1px solid var(--glass-border); transition: 0.3s;
+/* Footer Sosmed */
+.social-links { display: flex; justify-content: center; gap: 20px; padding: 40px 0; }
+.social-links a { 
+  width: 50px; height: 50px; border-radius: 15px; background: var(--bg); 
+  display: flex; align-items: center; justify-content: center; color: var(--text);
+  box-shadow: var(--nm-outer); text-decoration: none; border: 1px solid var(--glass-border);
 }
 
-.reveal { opacity: 0; transform: translateY(30px); transition: 1s var(--ease); }
-.reveal-active { opacity: 1; transform: translateY(0); }
+/* Animations */
+.reveal { opacity: 0; transform: translateY(30px); transition: 0.8s var(--ease); }
+.reveal-active { opacity: 1 !important; transform: translateY(0) !important; }
 
 @media (max-width: 600px) {
-  .hero-cover { min-height: 80vh; padding-top: 100px; }
-  .hero-name { font-size: 3.8rem; }
-  .about-card { padding: 40px 20px; }
+  .hero-name { font-size: 3.2rem; }
+  .grid { grid-template-columns: 1fr; }
 }
