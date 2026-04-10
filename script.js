@@ -19,10 +19,10 @@ function render() {
   const grid = document.getElementById('project-grid');
   if (grid) {
     grid.innerHTML = projects.map((p, i) => `
-      <a href="${p.u}" class="project-card reveal" target="_blank" style="transition-delay: ${i * 50}ms">
+      <a href="${p.u}" class="project-card reveal" target="_blank" style="transition-delay: ${i * 40}ms">
         <span style="font-size:0.6rem; color:#3b82f6; font-weight:800; display:block; margin-bottom:8px">${p.t}</span>
         <div class="icon-box"><i class="${p.i}"></i></div>
-        <h3>${p.n}</h3>
+        <h3 style="margin-bottom:8px">${p.n}</h3>
         <p style="font-size:0.85rem; color:#94a3b8">${p.d}</p>
       </a>
     `).join('');
@@ -32,18 +32,11 @@ function render() {
 window.addEventListener('load', () => {
   render();
   setTimeout(() => {
-    // Hilangkan Loader
     const loader = document.getElementById('intro-loader');
     if (loader) loader.classList.add('hide-loader');
-
-    // Buka kunci scroll
+    
     document.body.style.overflowY = "auto";
     
-    // Trigger Hero Animation
-    const hero = document.querySelector('.hero-cover');
-    if (hero) hero.classList.add('reveal-active');
-
-    // Reveal on Scroll
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('reveal-active');
@@ -51,5 +44,5 @@ window.addEventListener('load', () => {
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.reveal, .about-card, .project-card').forEach(el => observer.observe(el));
-  }, 1000);
+  }, 800);
 });
