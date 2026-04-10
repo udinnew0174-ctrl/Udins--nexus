@@ -1,3 +1,8 @@
+/**
+ * Udin Nexus - Optimized Script
+ * Fix: WhatsApp Logo & Scroll System
+ */
+
 const projects = [
   { n: "SmartMonefy", t: "Finance", d: "Finance tracker cerdas gasan harian.", u: "https://smartmonefy.vercel.app/", i: "fa-chart-pie" },
   { n: "Tugas Target", t: "Utility", d: "Manajemen produktivitas simpel.", u: "https://targetugas.lovable.app/", i: "fa-bullseye" },
@@ -11,43 +16,41 @@ const projects = [
   { n: "PixelForge", t: "AI Editor", d: "Bagusakan foto pakai AI.", u: "https://pixelforge-a1.vercel.app/", i: "fa-magic" },
   { n: "Lumina AI", t: "AI Tools", d: "Hapus background foto otomatis.", u: "https://lumina-a1.vercel.app/", i: "fa-wand-magic-sparkles" },
   { n: "Nabung-ku", t: "Finance", d: "Perencanaan tabungan masa depan.", u: "https://nabung-ku.vercel.app/", i: "fa-piggy-bank" },
-  { n: "Kirim Cepat", t: "Social", d: "Kirim WA tanpa simpan nomor.", u: "https://kirim-cepat.vercel.app/", i: "fa-whatsapp" },
+  { n: "Kirim Cepat", t: "Social", d: "Kirim WA tanpa simpan nomor.", u: "https://fabrands-fa-whatsapp", i: "fa-brands fa-whatsapp" },
   { n: "AmbilKode", t: "Dev Tools", d: "Alat ambil kode web developer.", u: "https://ambilkode.vercel.app/", i: "fa-code" }
 ];
 
 function renderProjects() {
   const grid = document.getElementById('project-grid');
   if (!grid) return;
-  
+
   grid.innerHTML = projects.map((p, i) => `
     <a href="${p.u}" class="project-card reveal" target="_blank" style="transition-delay: ${i * 50}ms">
       <span class="tag">${p.t}</span>
-      <div class="icon-box"><i class="fas ${p.i}"></i></div>
-      <h3 style="margin-bottom:10px">${p.n}</h3>
-      <p style="font-size:0.9rem; color:#94a3b8">${p.d}</p>
+      <div class="icon-box">
+        <i class="${p.i}"></i>
+      </div>
+      <h3>${p.n}</h3>
+      <p>${p.d}</p>
     </a>
   `).join('');
 }
 
 window.addEventListener('load', () => {
   renderProjects();
-  
-  // Memaksa loader hilang & scroll aktif
   setTimeout(() => {
     const loader = document.getElementById('intro-loader');
     if (loader) loader.classList.add('hide-loader');
     
     document.body.style.overflowY = "auto";
-    
-    // Animasi muncul saat scroll
+    document.documentElement.style.overflowY = "auto";
+
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('reveal-active');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('reveal-active');
       });
     }, { threshold: 0.1 });
-    
-    document.querySelectorAll('.reveal, .about-card').forEach(el => observer.observe(el));
-  }, 1200);
+
+    document.querySelectorAll('.reveal, .about-card, .section-header').forEach(el => observer.observe(el));
+  }, 1000);
 });
